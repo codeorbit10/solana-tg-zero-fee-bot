@@ -8,9 +8,9 @@ Sick of per-trade fees eating your gains? Trade on Solana via Telegram with zero
 
 1) **Clone & install**
 
-    git clone https://github.com/codeorbit10/solana-tg-zero-fee-bot
-    cd solana-tg-zero-fee-bot
-    pip3 install -r requirements.txt
+    - git clone https://github.com/codeorbit10/solana-tg-zero-fee-bot
+    - cd solana-tg-zero-fee-bot
+    - pip3 install -r requirements.txt
 
 2) **Create a .env file with the following values**
 
