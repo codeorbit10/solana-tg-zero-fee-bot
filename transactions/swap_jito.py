@@ -8,6 +8,7 @@ from transactions.sign_jupiter_swap_instructions import sign_and_send_transactio
 from constants import SOL_MINT, LAMPORTS_PER_SOL, BUY
 from dotenv import load_dotenv
 from transactions.account import get_token_account_balance, get_user_keypair
+from helpers.swap_notification import swap_notification
 import logging
 
 logger = logging.getLogger(__name__)
@@ -53,5 +54,7 @@ async def swap(
         tx_b64 = await swap_jupiter(quote, tip_lamports)
 
         sig = await sign_and_send_transaction(tx_b64, get_user_keypair())
+        await swap_notification(reply_message=reply_message, task=task, address=address, side=side, tx_sig=sig)
         return sig
     except Exception as e:
+        await swap_notification(reply_message=reply_message, task=task, address=address, side=side, error=f"Error on processing for {address} {e}")

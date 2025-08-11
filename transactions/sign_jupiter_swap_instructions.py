@@ -2,7 +2,6 @@ import os, asyncio, logging
 import base64
 import base58
 from typing import Dict
-from dotenv import load_dotenv
 from solders.keypair import Keypair
 from solders.instruction import Instruction, AccountMeta
 from solders.address_lookup_table_account import AddressLookupTableAccount
@@ -13,12 +12,10 @@ from solders.pubkey import Pubkey
 from helpers.client_session import get_session
 from solders.signature import Signature
 from helpers.ws_subscribe import ws_subscribe
-from constants import SOL_MINT, SELL, BUY
+from constants import SOL_MINT, SELL, BUY, JITO_RPC_URL
 from spl.token.instructions import create_associated_token_account
 
 logger = logging.getLogger(__name__)
-load_dotenv()
-JITO_RPC_URL = os.environ["JITO_RPC_URL"]
 
 async def sign_and_send_transaction(
     swap_resp: Dict,

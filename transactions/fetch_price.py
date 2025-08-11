@@ -27,7 +27,6 @@ async def fetch_price_usdc(address: str) -> float:
         raise ValueError("no direct price data")
 
     price = float(token["price"])
-    print(f"[Price-Jup] {address} → ${price:.6f} in {elapsed:.1f}ms")
     return price
 
 async def fetch_price_sol(address: str) -> float:
@@ -42,7 +41,6 @@ async def fetch_price_sol(address: str) -> float:
     if route and "outAmount" in route[0]['swapInfo']:
         out = int(route[0]['swapInfo']["outAmount"])
         price = out / 10**6
-        print(f"[Price-Swap] in {elapsed:.1f}ms: ${price:.6f}")
         return price
     raise ValueError("no swap route for fallback")
 
@@ -88,6 +86,5 @@ async def fetch_supply(address: str) -> float:
         supply = 0.0
 
     elapsed = (time.monotonic() - start) * 1000
-    print(f"[Supply] {supply:,.0f} in {elapsed:.1f}ms")
     return supply
 
